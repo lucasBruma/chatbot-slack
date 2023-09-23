@@ -89,3 +89,38 @@ async function askNextQuestion(say) {
   }
   await say(questionnaire[currentSection].specificQuestions[currentQuestion]);
 }
+
+// Confirmation message listener
+app.message(/confirm:(\w+):(\w+)/, async ({ message, say, context }) => {
+  try {
+    const matches = context.matches;
+    const questionnaireId = matches[1];
+    const developerSlackId = matches[2];
+
+    // Find the questionnaire in the database by ID
+    const questionnaireDoc = await db.collection('proyecto').doc(questionnaireId).get();
+    
+    if(!questionnaireDoc.exists) {
+      await say('Invalid questionnaire ID.');
+      return;
+    }
+
+    // Update the questionnaire with the selected developer's ID and set confirmed to true
+    await questionnaireDoc.ref.update({
+      developerId: developerSlackId,
+      confirmed: true
+    });
+
+    // Notify the initial user
+    const userSlackId = questionnaireDoc.data().usuario;
+    app.client.chat.postMessage({
+      token: process.env.SLACK_BOT_TOKEN,
+      channel: userSlackId,
+      text: `Great news! A developer has been selected for your project.`
+    });
+
+  } catch (error) {
+    console.error(error);
+    await say('An error occurred. Please try again.');
+  }
+});

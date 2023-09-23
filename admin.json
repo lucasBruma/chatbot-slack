@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "chatbot-slack-f8022",
+  "private_key_id": "84e6dc42af8e38a348e7fd9483c45ca347bba75a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCrRXywyGRFFUjI\nLOa9X0w8uKju+YedAKlSEzS+ID1Vx4IjpKlwJhYlCgzSd5zd3r70qYWwlMZA3aaN\nzAApahXzNiqsY+KmuuSAwIhJrs3NwnicH9I7ZCbrYC29Ym5A6rtPd2FM+TrOzq0R\nKQdg3VdS4NC5KUH8hohxBJq7B5MnKW6xbHiyOXVXpzYz3qB4LKwRYd02dAFPiTpy\nDbxRb6h95YqqrL//ZOfECIP9dWcPLzMJeaQxYXySA5P1i/xmrtc+0sTsee5HkWy2\naisk3qdMVzQj/iGaaRcE7AsUsCBD0USQGjB95d+Ko7yUyI/mScApxAuXo7d00BhQ\nOxIWdnMRAgMBAAECggEAB1Hr915JMs6rEqsgnX1iM8IsrjIKAsLRecmKWonkNTNW\ns5FJEJsAHUslqyUjljP781b/eMGTC5itkqfiZeK71248Oqv2NuwL8hjIemW3NBEY\nuIt/n7wzEaJFsi9vyOR/ZvESPoj0Y3xf1zjqsNAk+EzVfuRtho51bGcm+dFkD6ta\npARLY899WRlUKxL/F6MzCTOtdLq7vM+2axieduEf7X7PYwg47nXxnlldWgVntv7N\nxqmLgMfl9eFuSblqJfC4SaW0pI9UBqxnPe20sHTpPaWih+rbxb4LFq1ZR3L3IHop\nqg9gCPXuHYVriroB24fUNt0zuO3wwLVmleTAo6Ex5QKBgQDrDmADE7njs92/ni/K\nb1kNFYI4qyTlv6W5ViofYhxIKs1VXzTGLeqH/ZMxoW2ITo5Fks4uT/2kc7kfg7kY\nOCDyB7FWhJBJeC4ilMwwTPtlyZvOjWuzdoDroNz/KyRsnmwXoZadl2lCQ1Q1t3Oo\nfgrBTSjrm7x6bR5fwlf2dIzFDwKBgQC6iC8nGbYGwW3EyGSEFfYEB/bMFNezr76m\nmUfqHm6hQBuxJpSWCvo60xKM0VBfCSZLjwsLpgmRlLRGpB5lYh0Xinv6ZnP2s2Gm\n9ZGtJFTMG3dKZKJciY5XvlFnawgJ+Ytdt31xDZt/zs1IJ0/qSGCnDu1T4oapdSwq\nIerrVyqF3wKBgQCHf7LjMzTeSSpUMokUJhnsi/CUYDwV4ONUspH3o2PwShQx2X8f\nmwpuuENowcjVYYtsGdOXKO9rJHab7x/9ESYUv1CAMkzGvWvC7YnDci0doRma+TUT\nsAVjT0j2I1WM88oV2UVstQKtewiJKqaWg4oJokQrhYwh+tMemnaAkPExCwKBgE1X\nC931biCs8Ltnry2JAYE4YB7MAYeSNcVTxpqO1aXsM88mxPLVSF09iPJ0ExPkcklf\n3N+Oj2caNgkYITY+EPviwnbXJfvC8plMNoOIjdQ3CyYARcWCj09YLN5pZWLlYeCQ\npOVMFA5RC5KAIkVsjw6VRNfEE7uNRquNdp7vfEUXAoGBAIkOxyq1sj0LeMV7bgxf\n7r44aaQ5So4rsugBQZaFf8/eZ6JLdc58SgQIXbJN9eWKVOGeJdBXmCzkGM/yv1xt\nefPNXcF7hjx6PuHnJb0xjJHvQrFaY/cN4Gc8rlOVdzBk3mWcJAFAyoUDOcpoGhKO\nVE9pNuWRKnPmYZRwcq78k94c\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-ehj8b@chatbot-slack-f8022.iam.gserviceaccount.com",
+  "client_id": "116412720387452202975",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-ehj8b%40chatbot-slack-f8022.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

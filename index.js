@@ -13,7 +13,7 @@ admin.initializeApp({
 
 const answers = [];
 
-const db = admin.firestore();
+const db = admin.database();
 
 let currentSection = 0;
 let currentQuestion = 0;
@@ -40,11 +40,22 @@ app.message("hola", async ({ command, say }) => {
   }
 });
 
-app.message(async ({ message, say }) => {
+app.message(async ({ message, say, client }) => {
   const answer = message.text;
 
+  // Obtengo mail del usuario que envio mensaje
+  const userInfo = await client.users.info({
+    user: message.user,
+    token: process.env.SLACK_BOT_TOKEN,
+  });
+
   if (answer && !answer.includes("hola")) {
-    answers[slug].push(answer);
+    if (!answers[questionnaire[currentSection].slug]) {
+      answers[questionnaire[currentSection].slug] = [];
+    }
+
+    answers[questionnaire[currentSection].slug].push(answer);
+
     // Avanzar a la siguiente pregunta
     currentQuestion++;
 
@@ -54,16 +65,12 @@ app.message(async ({ message, say }) => {
     ) {
       // Comprobar si hemos llegado al final del cuestionario
       if (currentSection >= questionnaire.length - 1) {
-        await db.collection("proyecto").add({
-          usuario: message.username,
-          titulo: answers["titulo"],
-          descripcion: answers["descripcion"],
-          skillsRequeridas: answers["skillsRequeridas"],
-          alcance: answers["alcance"],
-          // cronograma: answers["cronograma"],
-          // presupuesto: answers["presupuesto"],
-          // comunicacion: answers["comunicacion"],
-          timestamp: admin.firestore.FieldValue.serverTimestamp(),
+        const ref = db.ref("proyecto");
+        const newProjectRef = ref.push();
+        newProjectRef.set({
+          usuario: message.user,
+          email: userInfo.user.profile.email,
+          respuestas: answers,
         });
 
         await say(
@@ -72,7 +79,6 @@ app.message(async ({ message, say }) => {
         return;
       }
 
-      // Si no, avanzar a la siguiente sección
       currentSection++;
       currentQuestion = 0;
     }
@@ -89,38 +95,3 @@ async function askNextQuestion(say) {
   }
   await say(questionnaire[currentSection].specificQuestions[currentQuestion]);
 }
-
-// Confirmation message listener
-app.message(/confirm:(\w+):(\w+)/, async ({ message, say, context }) => {
-  try {
-    const matches = context.matches;
-    const questionnaireId = matches[1];
-    const developerSlackId = matches[2];
-
-    // Find the questionnaire in the database by ID
-    const questionnaireDoc = await db.collection('proyecto').doc(questionnaireId).get();
-    
-    if(!questionnaireDoc.exists) {
-      await say('Invalid questionnaire ID.');
-      return;
-    }
-
-    // Update the questionnaire with the selected developer's ID and set confirmed to true
-    await questionnaireDoc.ref.update({
-      developerId: developerSlackId,
-      confirmed: true
-    });
-
-    // Notify the initial user
-    const userSlackId = questionnaireDoc.data().usuario;
-    app.client.chat.postMessage({
-      token: process.env.SLACK_BOT_TOKEN,
-      channel: userSlackId,
-      text: `Great news! A developer has been selected for your project.`
-    });
-
-  } catch (error) {
-    console.error(error);
-    await say('An error occurred. Please try again.');
-  }
-});

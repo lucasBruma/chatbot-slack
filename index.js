@@ -30,7 +30,7 @@ const app = new App({
   console.log("Bolt app started!!");
 })();
 
-app.message("hola", async ({ command, say }) => {
+app.message("holaLocal", async ({ command, say }) => {
   try {
     await say("Bienvenido al cuestionario!");
     await askNextQuestion(say);
@@ -70,10 +70,12 @@ app.message(async ({ message, say, client }) => {
           usuario: message.user,
           email: userInfo.user.profile.email,
           respuestas: answers,
+          freelancerId: "",
+          confirmed: false,
         });
 
         await say(
-          "Gracias por completar el cuestionario. En breves estaremos en contacto!."
+          "Gracias por completar el cuestionario. En breves te estaremos contactando por mail!"
         );
         return;
       }
@@ -94,5 +96,3 @@ async function askNextQuestion(say) {
   }
   await say(questionnaire[currentSection].specificQuestions[currentQuestion]);
 }
-
-// module.exports = app;

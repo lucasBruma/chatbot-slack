@@ -3,7 +3,6 @@ require("dotenv").config();
 const admin = require("firebase-admin");
 var serviceAccount = require("./admin.json");
 var questionnaire = require("./questionnaire");
-// var questions = require("./questions.js");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),

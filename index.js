@@ -24,14 +24,9 @@ const app = new App({
   appToken: process.env.APP_TOKEN,
 });
 
-// (async () => {
-//   const port = 3000;
-//   await app.start(process.env.PORT || port);
-//   console.log("Bolt app started!!");
-// })();
-
 (async () => {
-  await app.start();
+  const port = 3000;
+  await app.start(process.env.PORT || port);
   console.log("Bolt app started!!");
 })();
 

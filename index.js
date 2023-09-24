@@ -30,14 +30,17 @@ const app = new App({
   console.log("Bolt app started!!");
 })();
 
-app.message("holaLocal", async ({ command, say }) => {
-  try {
-    await say("Bienvenido al cuestionario!");
-    await askNextQuestion(say);
-  } catch (error) {
-    console.error(error);
+app.message(
+  /(?:^|\W)(hola|hello|hi|¡hola!)(?:$|\W)/i,
+  async ({ command, say }) => {
+    try {
+      await say("Bienvenido al cuestionario!");
+      await askNextQuestion(say);
+    } catch (error) {
+      console.error(error);
+    }
   }
-});
+);
 
 app.message(async ({ message, say, client }) => {
   const answer = message.text;
@@ -48,7 +51,9 @@ app.message(async ({ message, say, client }) => {
     token: process.env.SLACK_BOT_TOKEN,
   });
 
-  if (answer && !answer.includes("hola")) {
+  const keywordPattern = /(?:^|\W)(hola|hello|hi|¡hola!)(?:$|\W)/i;
+
+  if (answer && !keywordPattern.test(answer)) {
     if (!answers[questionnaire[currentSection].slug]) {
       answers[questionnaire[currentSection].slug] = [];
     }

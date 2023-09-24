@@ -22,6 +22,7 @@ const questionnaire = [
       "¿Hay certificaciones o niveles de experiencia específicos requeridos?",
     ],
   },
+  // comento esto para la demo
   // {
   //   nameSection: "Alcance del Proyecto",
   //   slug: "alcance",
